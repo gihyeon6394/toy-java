@@ -4,7 +4,7 @@ package os.process;
  * 병행 프로세스에서 발생할 수 있는 문제점을 정의
  * 1.
  * 2. 생산자-소비자 문제
- * 3.
+ * 3. 판독기-기록기 문제
  */
 public class Concurrency {
 
