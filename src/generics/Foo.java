@@ -38,6 +38,10 @@ public class Foo {
         rawBox3.set(119327);
         String val = String.valueOf(rawBox3.get());
         System.out.println(val);
+
+        generics.Pair<Integer, String> p1 = new generics.Pair<>(1, "world");
+        generics.Pair<Integer, String> p2 = new generics.Pair<>(2, "world");
+        System.out.println(generics.Util.compare(p1, p2));
     }
 
     /**

@@ -1,5 +1,10 @@
 # Generics
 
+- 배경
+- 제네릭을 왜 쓰는가
+- 제네릭
+- 제네릭 메서드 
+
 ## 배경
 
 - 컴파일 버그는 일찍이 탐지되기 때문에 디버그가 쉽다.
@@ -179,6 +184,42 @@ java: unchecked conversion
 ````
 @SuppressWarnings("unchecked")
 ````
+
+## 제네릭 메서드
+
+- static, non-static 메서드 둘 다 가능
+- 제네릭 타입의 scope 은 메서드 한정
+- 타입추론 <sup>type inference</sup> 가능
+  - 제네릭 메서드를 일반 메서드처럼 사용 가능
+  - java compiler 가 타입을 알아서 추론해냄
+
+```java
+public class Util {
+    public static <K, V> boolean compare(Pair<K, V> p1, Pair<K, V> p2) {
+        return p1.getKey().equals(p2.getKey()) &&
+                p1.getValue().equals(p2.getValue());
+    }
+}
+public class Pair<K, V> {
+    private K key;
+    private V value;
+  
+    public Pair(K key, V value) {
+      this.key = key;
+      this.value = value;
+    }
+    // ...
+}
+
+public class Foo {
+    public static void main(String[] args) {
+        Pair<Integer, String> p1 = new Pair<>(1, "world");
+        Pair<Integer, String> p2 = new Pair<>(2, "world");
+        System.out.println(Util.compare(p1, p2));
+    }
+}
+```
+
 
 ## 참고
 
