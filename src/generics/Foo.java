@@ -42,6 +42,37 @@ public class Foo {
         generics.Pair<Integer, String> p1 = new generics.Pair<>(1, "world");
         generics.Pair<Integer, String> p2 = new generics.Pair<>(2, "world");
         System.out.println(generics.Util.compare(p1, p2));
+
+        testTypeParam();
+        testTypeParamWithGeneric();
+
+    }
+
+    private static void testTypeParamWithGeneric() {
+
+    }
+
+    /*public static <T> int countGreaterThan(T[] anArray, T elem) {
+        int count = 0;
+        for (T e : anArray)
+            if (e > elem)  // compiler error : Operator '>' cannot be applied to 'T', 'T'
+                ++count;
+        return count;
+    }*/
+
+    public static <T extends Comparable<T>> int countGreaterThan(T[] anArray, T elem) {
+        int count = 0;
+        for (T e : anArray)
+            // if (e > elem)  // compiler error : Operator '>' cannot be applied to 'T', 'T'
+            if(e.compareTo(elem) > 0)
+                ++count;
+        return count;
+    }
+
+    private static void testTypeParam() {
+        // printTypeParameter(1);
+        // printTypeParameter("이건 안되지");
+
     }
 
     /**
@@ -100,6 +131,17 @@ public class Foo {
         public V getValue() {
             return value;
         }
+    }
+
+
+    /**
+     * Bounded Type Parameters
+     */
+
+    public static <U extends Number> void printTypeParameter(U u) {
+        System.out.println(u.getClass().getName());
+        System.out.println(u);
+
     }
 
 }
